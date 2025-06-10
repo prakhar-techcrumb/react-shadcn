@@ -4,10 +4,8 @@ import {
   Settings,
   User2,
   ChevronUp,
-  Building2,
   BarChart3,
   FileText,
-  Command,
   Layers
 } from "lucide-react"
 
@@ -17,13 +15,12 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarHeader,
+  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
   SidebarSeparator,
-  SidebarTrigger,
 } from "@/components/ui/sidebar"
 import {
   DropdownMenu,
@@ -31,7 +28,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ThemeToggle } from "@/hooks/theme-toggle"
 
 // Menu items for the main navigation
 const mainNavItems = [
@@ -68,31 +64,11 @@ const settingsItems = [
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="inset" collapsible="icon">
-      <SidebarHeader>
-        <div className="flex items-center justify-between px-2 py-3">
-          <div className="flex items-center gap-2">
-            <div className="flex aspect-square size-9 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-              <Building2 className="size-5" />
-            </div>
-            <span className="font-semibold tracking-tight data-[state=collapsed]:hidden">MyApp</span>
-          </div>
-          <div className="flex items-center gap-2 data-[state=collapsed]:w-full data-[state=collapsed]:justify-center">
-            <ThemeToggle className="data-[state=collapsed]:hidden" />
-            <SidebarTrigger />
-          </div>
-        </div>
-      </SidebarHeader>
-      
+    <Sidebar variant="sidebar" collapsible="icon">      
       <SidebarContent className="py-2">
+        <SidebarGroupLabel>Application</SidebarGroupLabel>
         {/* Main Navigation */}
         <SidebarGroup>
-          <div className="mx-3 mb-2 mt-1">
-            <div className="flex items-center px-2 py-1.5 mb-1">
-              <Command className="mr-2 size-4 text-muted-foreground" />
-              <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Main</span>
-            </div>
-          </div>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainNavItems.map((item) => (

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import PlayerPage from '../pages/player';
+import PlayerList from '@/pages/player/list';
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<PlayerPage />} />
+      <Route path="/" element={<PlayerList />} />
       {/* Add more routes here as your app grows */}
     </Routes>
   );
