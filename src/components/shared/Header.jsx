@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { SidebarTrigger } from "../ui/sidebar";
 import { ThemeToggle } from "@/hooks/theme-toggle";
 
 export function Header({ title, breadcrumbs, actionButton }) {
@@ -26,7 +25,6 @@ export function Header({ title, breadcrumbs, actionButton }) {
             </div>
             <div className="flex items-center gap-4">
                 <div>
-                    <SidebarTrigger />
                     <ThemeToggle />
                 </div>
                 {actionButton && (

@@ -5,7 +5,7 @@ import PlayerList from '@/pages/player/list';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<PlayerList />} />
+      <Route path="/players" element={<PlayerList />} />
       {/* Add more routes here as your app grows */}
     </Routes>
   );

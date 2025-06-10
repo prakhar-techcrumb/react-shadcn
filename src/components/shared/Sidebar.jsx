@@ -1,13 +1,13 @@
 import React from "react"
 import {
-  Home,
-  Settings,
   User2,
   ChevronUp,
-  BarChart3,
-  FileText,
-  Layers
+  FileVideo,
+  PanelLeft,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react"
+import { useLocation } from "react-router-dom"
 
 import {
   Sidebar,
@@ -16,11 +16,13 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
   SidebarSeparator,
+  useSidebar,
 } from "@/components/ui/sidebar"
 import {
   DropdownMenu,
@@ -28,79 +30,75 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Button } from "../ui/button"
 
 // Menu items for the main navigation
 const mainNavItems = [
   {
-    title: "Dashboard",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Projects",
-    url: "#", 
-    icon: Layers,
-  },
-  {
-    title: "Analytics",
-    url: "#",
-    icon: BarChart3,
-  },
-  {
-    title: "Reports",
-    url: "#",
-    icon: FileText,
+    title: "Player",
+    url: "/players",
+    icon: FileVideo,
   },
 ]
 
-// Menu items for settings
-const settingsItems = [
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
 
 export function AppSidebar() {
+  const location = useLocation();
+  const { state, toggleSidebar } = useSidebar();
+  const isExpanded = state === "expanded";
+
   return (
-    <Sidebar variant="sidebar" collapsible="icon">      
+    <Sidebar variant="sidebar" collapsible="icon">
+      <SidebarHeader>
+        <div className="flex items-center">
+          {isExpanded ? (
+            <div className="w-full flex items-center justify-between py-2">
+              <img
+                src="https://bunny-wp-pullzone-rltketicfk.b-cdn.net/wp-content/uploads/2024/10/Performoo-logo.png"
+                alt="Performoo Logo"
+                className="h-8 w-auto object-contain"
+              />
+              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toggleSidebar()}>
+                <PanelLeft onClick={() => toggleSidebar()} className="size-4 text-sidebar-foreground hover:bg-foreground" />
+              </Button>
+            </div>
+          ) : (
+            <div className="w-full flex flex-col items-center gap-4">
+              <img
+                src="https://media-b.performoo.com/logos-performoo/icons/orange-48-48.png"
+                alt="Performoo Icon"
+                className="h-10 w-10 object-contain"
+              />
+              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toggleSidebar()}>
+                <PanelLeft onClick={() => toggleSidebar()} className="size-4 text-sidebar-foreground" />
+              </Button>
+            </div>
+          )}
+        </div>
+      </SidebarHeader>
+
+      <SidebarSeparator />
+
       <SidebarContent className="py-2">
-        <SidebarGroupLabel>Application</SidebarGroupLabel>
-        {/* Main Navigation */}
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {mainNavItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className="px-2 py-1.5">
-                    <a href={item.url}>
-                      <item.icon className="size-5" />
-                      <span className="ml-2 font-medium">{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarSeparator className="my-2" />
-
-        {/* Settings */}
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {settingsItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className="px-2 py-1.5">
-                    <a href={item.url}>
-                      <item.icon className="size-5" />
-                      <span className="ml-2 font-medium">{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {mainNavItems.map((item) => {
+                const isActive = location.pathname.startsWith(item.url);
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      asChild
+                      className={`px-2 py-1.5 ${isActive ? 'bg-sidebar-accent text-sidebar-accent-foreground' : ''}`}
+                    >
+                      <a href={item.url}>
+                        <item.icon className="size-5" />
+                        <span className="ml-2 font-medium">{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
