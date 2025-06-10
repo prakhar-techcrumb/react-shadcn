@@ -1,23 +1,14 @@
 import React from "react"
 import {
-  Calendar,
   Home,
-  Inbox,
-  Search,
   Settings,
   User2,
   ChevronUp,
-  MoreHorizontal,
-  Plus,
   Building2,
-  Users,
   BarChart3,
   FileText,
-  Shield,
-  Bell,
-  Palette,
-  Globe,
-  Zap
+  Command,
+  Layers
 } from "lucide-react"
 
 import {
@@ -26,12 +17,10 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuAction,
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
@@ -42,6 +31,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { ThemeToggle } from "@/hooks/theme-toggle"
 
 // Menu items for the main navigation
 const mainNavItems = [
@@ -51,47 +41,9 @@ const mainNavItems = [
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Projects",
     url: "#", 
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-]
-
-// Menu items for projects
-const projectItems = [
-  {
-    title: "Web Development",
-    url: "#",
-    icon: Globe,
-  },
-  {
-    title: "Mobile App",
-    url: "#",
-    icon: Zap,
-  },
-  {
-    title: "Design System",
-    url: "#",
-    icon: Palette,
-  },
-]
-
-// Menu items for team
-const teamItems = [
-  {
-    title: "Team Members",
-    url: "#",
-    icon: Users,
+    icon: Layers,
   },
   {
     title: "Analytics",
@@ -103,20 +55,10 @@ const teamItems = [
     url: "#",
     icon: FileText,
   },
-  {
-    title: "Security",
-    url: "#",
-    icon: Shield,
-  },
 ]
 
 // Menu items for settings
 const settingsItems = [
-  {
-    title: "Notifications",
-    url: "#",
-    icon: Bell,
-  },
   {
     title: "Settings",
     url: "#",
@@ -128,38 +70,37 @@ export function AppSidebar() {
   return (
     <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader>
-        <div className="flex items-center justify-between">
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton size="lg" asChild>
-                <a href="#">
-                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                    <Building2 className="size-4" />
-                  </div>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">My App</span>
-                    <span className="truncate text-xs">Enterprise</span>
-                  </div>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-          <SidebarTrigger className="ml-auto" />
+        <div className="flex items-center justify-between px-2 py-3">
+          <div className="flex items-center gap-2">
+            <div className="flex aspect-square size-9 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+              <Building2 className="size-5" />
+            </div>
+            <span className="font-semibold tracking-tight data-[state=collapsed]:hidden">MyApp</span>
+          </div>
+          <div className="flex items-center gap-2 data-[state=collapsed]:w-full data-[state=collapsed]:justify-center">
+            <ThemeToggle className="data-[state=collapsed]:hidden" />
+            <SidebarTrigger />
+          </div>
         </div>
       </SidebarHeader>
       
-      <SidebarContent>
+      <SidebarContent className="py-2">
         {/* Main Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <div className="mx-3 mb-2 mt-1">
+            <div className="flex items-center px-2 py-1.5 mb-1">
+              <Command className="mr-2 size-4 text-muted-foreground" />
+              <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Main</span>
+            </div>
+          </div>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainNavItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild className="px-2 py-1.5">
                     <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                      <item.icon className="size-5" />
+                      <span className="ml-2 font-medium">{item.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -168,75 +109,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarSeparator />
-
-        {/* Projects */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {projectItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <SidebarMenuAction>
-                        <MoreHorizontal />
-                        <span className="sr-only">More</span>
-                      </SidebarMenuAction>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      className="w-48 rounded-lg"
-                      side="bottom"
-                      align="end"
-                    >
-                      <DropdownMenuItem>
-                        <span>Edit Project</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <span>Delete Project</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </SidebarMenuItem>
-              ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <Plus />
-                  <span>Add Project</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarSeparator />
-
-        {/* Team */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Team</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {teamItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarSeparator />
+        <SidebarSeparator className="my-2" />
 
         {/* Settings */}
         <SidebarGroup>
@@ -244,10 +117,10 @@ export function AppSidebar() {
             <SidebarMenu>
               {settingsItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild className="px-2 py-1.5">
                     <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                      <item.icon className="size-5" />
+                      <span className="ml-2 font-medium">{item.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
