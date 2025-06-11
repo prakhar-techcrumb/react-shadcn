@@ -63,7 +63,7 @@ export function AppSidebar() {
                 className="h-8 w-auto object-contain"
               />
               <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toggleSidebar()}>
-                <PanelLeft onClick={() => toggleSidebar()} className="size-4 text-sidebar-foreground hover:bg-foregroundbg-sidebar-accent" />
+                <PanelLeft onClick={() => toggleSidebar()} className="size-4" />
               </Button>
             </div>
           ) : (
@@ -74,7 +74,7 @@ export function AppSidebar() {
                 className="h-10 w-10 object-contain"
               />
               <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toggleSidebar()}>
-                <PanelLeft onClick={() => toggleSidebar()} className="size-4 text-sidebar-foreground" />
+                <PanelLeft onClick={() => toggleSidebar()} className="size-4" />
               </Button>
             </div>
           )}
