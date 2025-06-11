@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { DataTable } from "@/components/shared/DataTable";
 import { Header } from "@/components/shared/Header";
 import { Dropdown } from "@/components/shared/Dropdown";
+import { Button } from "@/components/ui/button";
 
 const playerData = [
   {
@@ -87,7 +88,30 @@ const playerData = [
     size: "16:9",
     autoplay: true,
   },
-  // Feel free to add more items as needed
+    {
+    id: "11",
+    name: "2804 Toast 5 sec Test",
+    status: "enabled",
+    dateCreated: new Date("2025-04-15"),
+    size: "16:9",
+    autoplay: false,
+  },
+  {
+    id: "12",
+    name: "Copy Of 9 jan",
+    status: "enabled",
+    dateCreated: new Date("2025-04-02"),
+    size: "16:9",
+    autoplay: true,
+  },
+  {
+    id: "13",
+    name: "26 March Player",
+    status: "enabled",
+    dateCreated: new Date("2025-03-26"),
+    size: "16:9",
+    autoplay: true,
+  },
 ];
 
 export default function PlayerList() {
@@ -142,9 +166,9 @@ export default function PlayerList() {
       accessorKey: "copy",
       header: "Copy",
       cell: () => (
-        <div className="">
+        <Button variant="ghost">
           <Copy className="w-4 h-4 cursor-pointer" />
-        </div>
+        </Button>
       ),
     },
     {

@@ -58,14 +58,14 @@ export function DataTable({
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="hover:bg-accent/40 transition-colors group px-4 py-3 text-left font-semibold text-foreground align-middle whitespace-nowrap border-b border-border"
+                    className="bg-accent transition-colors group px-4 py-3 text-left font-semibold text-foreground align-middle whitespace-nowrap border-b border-border"
                   >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -119,7 +119,7 @@ export function DataTable({
             Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
           </div>
           <Button
-            variant="outline"
+            variant="orange"
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}

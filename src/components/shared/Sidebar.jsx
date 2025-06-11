@@ -2,10 +2,9 @@ import React from "react"
 import {
   User2,
   ChevronUp,
-  FileVideo,
   PanelLeft,
-  ChevronLeft,
-  ChevronRight
+  SquarePlay,
+  Video
 } from "lucide-react"
 import { useLocation } from "react-router-dom"
 
@@ -37,7 +36,12 @@ const mainNavItems = [
   {
     title: "Player",
     url: "/players",
-    icon: FileVideo,
+    icon: SquarePlay,
+  },
+    {
+    title: "Interactive Video",
+    url: "/video",
+    icon: Video,
   },
 ]
 
@@ -113,7 +117,7 @@ export function AppSidebar() {
                   size="lg"
                   className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
-                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-orange text-sidebar-primary-foreground">
                     <User2 className="size-4" />
                   </div>
                   <div className="grid flex-1 text-left text-sm leading-tight">
