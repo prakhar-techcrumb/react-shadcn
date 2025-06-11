@@ -16,6 +16,12 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { 
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useState } from "react";
 
 
@@ -69,51 +75,105 @@ export default function InteractiveVideoCreate() {
     // Event Tracker Form Component
     const EventTrackerForm = () => (
         <form className="space-y-8">
-            <div className="grid gap-2">
-                <Label htmlFor="analytics-integration">Analytics Integration</Label>
-                <Select defaultValue="google">
-                    <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select analytics provider" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="none">None</SelectItem>
-                        <SelectItem value="google">Google Analytics</SelectItem>
-                        <SelectItem value="adobe">Adobe Analytics</SelectItem>
-                        <SelectItem value="custom">Custom Integration</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+            <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="analytics-integration">
+                    <AccordionTrigger className="py-4">Analytics Integration</AccordionTrigger>
+                    <AccordionContent>
+                        <div className="space-y-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="analytics-provider">Analytics Provider</Label>
+                                <Select defaultValue="google">
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Select analytics provider" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="none">None</SelectItem>
+                                        <SelectItem value="google">Google Analytics</SelectItem>
+                                        <SelectItem value="adobe">Adobe Analytics</SelectItem>
+                                        <SelectItem value="custom">Custom Integration</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
 
-            <div className="grid gap-2">
-                <Label htmlFor="tracking-id">Google Analytics Tracking ID</Label>
-                <Input id="tracking-id" placeholder="UA-XXXXXXXXX-X or G-XXXXXXXXXX" />
-            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="tracking-id">Google Analytics Tracking ID</Label>
+                                <Input id="tracking-id" placeholder="UA-XXXXXXXXX-X or G-XXXXXXXXXX" />
+                            </div>
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
 
-            <div className="grid gap-2">
-                <Label>Events to Track</Label>
-                <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                        <Checkbox id="event-play" defaultChecked />
-                        <Label htmlFor="event-play">Play</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Checkbox id="event-pause" defaultChecked />
-                        <Label htmlFor="event-pause">Pause</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Checkbox id="event-complete" defaultChecked />
-                        <Label htmlFor="event-complete">Video Complete</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Checkbox id="event-milestone" />
-                        <Label htmlFor="event-milestone">Progress Milestones</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Checkbox id="event-interaction" defaultChecked />
-                        <Label htmlFor="event-interaction">Interactive Element Clicks</Label>
-                    </div>
-                </div>
-            </div>
+                <AccordionItem value="event-tracking">
+                    <AccordionTrigger className="py-4">Events to Track</AccordionTrigger>
+                    <AccordionContent>
+                        <div className="space-y-2">
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="event-play" defaultChecked />
+                                <Label htmlFor="event-play">Play</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="event-pause" defaultChecked />
+                                <Label htmlFor="event-pause">Pause</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="event-complete" defaultChecked />
+                                <Label htmlFor="event-complete">Video Complete</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="event-milestone" />
+                                <Label htmlFor="event-milestone">Progress Milestones</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="event-interaction" defaultChecked />
+                                <Label htmlFor="event-interaction">Interactive Element Clicks</Label>
+                            </div>
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="custom-events">
+                    <AccordionTrigger className="py-4">Custom Events</AccordionTrigger>
+                    <AccordionContent>
+                        <div className="space-y-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="custom-event-name">Custom Event Name</Label>
+                                <Input id="custom-event-name" placeholder="Enter custom event name" />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="custom-event-category">Event Category</Label>
+                                <Input id="custom-event-category" placeholder="Enter event category" />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="custom-event-action">Event Action</Label>
+                                <Input id="custom-event-action" placeholder="Enter event action" />
+                            </div>
+                            <Button variant="outline" className="mt-2">
+                                Add Custom Event
+                            </Button>
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="data-layer">
+                    <AccordionTrigger className="py-4">Data Layer Configuration</AccordionTrigger>
+                    <AccordionContent>
+                        <div className="space-y-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="data-layer-name">Data Layer Name</Label>
+                                <Input id="data-layer-name" defaultValue="dataLayer" />
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="auto-data-layer" defaultChecked />
+                                <Label htmlFor="auto-data-layer">Auto-initialize data layer</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="debug-mode" />
+                                <Label htmlFor="debug-mode">Enable debug mode</Label>
+                            </div>
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </form>
     );
 
