@@ -118,7 +118,7 @@ export default function InteractiveVideoCreate() {
     );
 
     return (
-        <div className="flex-1">
+        <div className="flex flex-col min-h-full flex-1">
             <Header
                 title="Interactive Video"
                 breadcrumbs={[
@@ -132,7 +132,7 @@ export default function InteractiveVideoCreate() {
                 <div className="flex-1">
                     <Button
                         variant="ghost"
-                        className={`w-full hover:bg-accent rounded-none h-auto py-4 relative text-base focus-visible:outline-none focus-visible:ring-0 ${currentStep === 1 ? "bg-accent border-b-2 border-gray-200 font-semibold" : ""
+                        className={`w-full hover:bg-accent rounded-none h-auto py-4 relative text-base focus-visible:outline-none focus-visible:ring-0 ${currentStep === 1 ? "text-accent-foreground bg-accent border-b-2 border-accent-foreground dark:border-orange font-semibold" : ""
                             }`}
                         onClick={() => setCurrentStep(1)}
                     >
@@ -143,7 +143,7 @@ export default function InteractiveVideoCreate() {
                 <div className="flex-1">
                     <Button
                         variant="ghost"
-                        className={`w-full hover:bg-accent rounded-none h-auto py-4 relative text-base focus-visible:outline-none focus-visible:ring-0 ${currentStep === 2 ? "bg-accent border-b-2 border-gray-200 font-semibold" : ""
+                        className={`w-full hover:bg-accent rounded-none h-auto py-4 relative text-base focus-visible:outline-none focus-visible:ring-0 ${currentStep === 2 ? "text-accent-foreground bg-accent border-b-2 border-accent-foreground dark:border-orange font-semibold" : ""
                             }`}
                         onClick={() => setCurrentStep(2)}
                     >
@@ -154,7 +154,7 @@ export default function InteractiveVideoCreate() {
                 <div className="flex-1">
                     <Button
                         variant="ghost"
-                        className={`w-full hover:bg-accent rounded-none h-auto py-4 relative text-base focus-visible:outline-none focus-visible:ring-0 ${currentStep === 3 ? "bg-accent border-b-2 border-gray-200 font-semibold" : ""
+                        className={`w-full hover:bg-accent rounded-none h-auto py-4 relative text-base focus-visible:outline-none focus-visible:ring-0 ${currentStep === 3 ? "text-accent-foreground bg-accent border-b-2 border-accent-foreground dark:border-orange font-semibold" : ""
                             }`}
                         onClick={() => setCurrentStep(3)}
                     >
@@ -164,7 +164,7 @@ export default function InteractiveVideoCreate() {
             </div>
 
             {/* Main Content: Form and Live Preview */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 flex-grow">
                 <Card className="p-6 border rounded-lg">
                     <CardHeader className="px-0 py-0 pb-4">
                         <CardTitle className="text-xl font-semibold">
@@ -256,7 +256,7 @@ export default function InteractiveVideoCreate() {
             </div>
 
             {/* Footer Buttons */}
-            <div className="flex justify-between mt-8">
+            <div className="flex justify-between mt-auto pt-8 sticky bottom-0">
                 <div className="flex gap-3">
                     <Button
                         variant="outline"

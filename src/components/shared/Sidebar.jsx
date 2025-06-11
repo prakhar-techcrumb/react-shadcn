@@ -63,7 +63,7 @@ export function AppSidebar() {
                 className="h-8 w-auto object-contain"
               />
               <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toggleSidebar()}>
-                <PanelLeft onClick={() => toggleSidebar()} className="size-4 text-sidebar-foreground hover:bg-foreground" />
+                <PanelLeft onClick={() => toggleSidebar()} className="size-4 text-sidebar-foreground hover:bg-foregroundbg-sidebar-accent" />
               </Button>
             </div>
           ) : (
@@ -93,7 +93,7 @@ export function AppSidebar() {
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
                       asChild
-                      className={`px-2 py-1.5 ${isActive ? 'bg-sidebar-accent text-sidebar-accent-foreground' : ''}`}
+                      className={`px-2 py-5 ${isActive ? 'bg-sidebar-accent text-sidebar-accent-foreground' : ''}`}
                     >
                       <a href={item.url}>
                         <item.icon className="size-5" />
